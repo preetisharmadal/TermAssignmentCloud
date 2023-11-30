@@ -1,3 +1,4 @@
+const end_point = process.env.REACT_APP_ENDPOINT;
 export const LoginUser = async (userID, password) => {
     const options = {
         method: 'PUT',
@@ -8,7 +9,7 @@ export const LoginUser = async (userID, password) => {
     }
 
     try {
-        const response = await fetch(`https://ga8psl1bd3.execute-api.us-east-1.amazonaws.com/prod/customer/login`, options);
+        const response = await fetch(`${end_point}/customer/login`, options);
 
         const data = await response.json();
         return data;
@@ -28,7 +29,7 @@ export const SignUpUser = async (userID, password) => {
     }
 
     try {
-        const response = await fetch(`https://ga8psl1bd3.execute-api.us-east-1.amazonaws.com/prod/customer/signup`, options);
+        const response = await fetch(`${end_point}/customer/signup`, options);
 
         const data = await response.json();
         return data;
@@ -48,7 +49,7 @@ export const SubscribeUser = async (userID) => {
     }
 
     try {
-        const response = await fetch(`https://ga8psl1bd3.execute-api.us-east-1.amazonaws.com/prod/customer/subscribe`, options);
+        const response = await fetch(`${end_point}/customer/subscribe`, options);
 
         const data = await response.json();
         return data;

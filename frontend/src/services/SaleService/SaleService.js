@@ -1,3 +1,4 @@
+const end_point = process.env.REACT_APP_ENDPOINT;
 export const CreateSale = async (customer_id, start_date, end_date, discount, shop) => {
     const options = {
         method: 'PUT',
@@ -8,7 +9,7 @@ export const CreateSale = async (customer_id, start_date, end_date, discount, sh
     }
 
     try {
-        const response = await fetch(`https://ga8psl1bd3.execute-api.us-east-1.amazonaws.com/prod/sales/create`, options);
+        const response = await fetch(`${end_point}/sales/create`, options);
 
         const data = await response.json();
         return data;
@@ -27,7 +28,7 @@ export const DeleteSale = async (sales_id) => {
     }
 
     try {
-        const response = await fetch(`https://ga8psl1bd3.execute-api.us-east-1.amazonaws.com/prod/sales/${sales_id}`, options);
+        const response = await fetch(`${end_point}/sales/${sales_id}`, options);
 
         const data = await response.json();
         return data;
@@ -47,7 +48,7 @@ export const EditSale = async (customer_id, sales_id, start_date, end_date, disc
     }
 
     try {
-        const response = await fetch(`https://ga8psl1bd3.execute-api.us-east-1.amazonaws.com/prod/sales/edit`, options);
+        const response = await fetch(`${end_point}/sales/edit`, options);
 
         const data = await response.json();
         return data;
@@ -66,7 +67,7 @@ export const GetSale = async (customer_id) => {
     }
 
     try {
-        const response = await fetch(`https://ga8psl1bd3.execute-api.us-east-1.amazonaws.com/prod/sales?customer_id=${customer_id}`, options);
+        const response = await fetch(`${end_point}/sales?customer_id=${customer_id}`, options);
 
         const data = await response.json();
         return data;
