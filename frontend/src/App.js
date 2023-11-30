@@ -3,7 +3,7 @@ import {
   theme
 } from '@chakra-ui/react';
 import React from 'react';
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 import CreateForm from './pages/CreateForm/CreateForm';
 import EditSaleForm from './pages/EditSaleForm/EditSaleForm';
 import LandingPage from './pages/LandingPage/LandingPage';
@@ -12,6 +12,7 @@ import LayoutWithoutNav from './pages/Layout/LayoutWithoutNav';
 import Login from './pages/Login/Login';
 import SalePage from './pages/SalePage/SalePage';
 import SignUp from './pages/SignUp/SignUp';
+import { isAuthenticated } from './services/UserServices/UserService';
 
 const router = createBrowserRouter([
   {
@@ -20,19 +21,19 @@ const router = createBrowserRouter([
       {
         // Change this path back to the Admin page
         path: "/",
-        element: <LandingPage />
+        element: isAuthenticated() ? <LandingPage /> : <Navigate to="/user/login" />
       },
       {
         path: "/sales/createform",
-        element: <CreateForm />
+        element: isAuthenticated() ? <CreateForm /> : <Navigate to="/user/login" />
       },
       {
         path: "/sales/:sales_id/edit",
-        element: <EditSaleForm />
+        element: isAuthenticated() ? <EditSaleForm /> : <Navigate to="/user/login" />
       },
       {
         path: "/sales/:sales_id",
-        element: <SalePage />
+        element: isAuthenticated() ? <SalePage /> : <Navigate to="/user/login" />
       },
 
     ]

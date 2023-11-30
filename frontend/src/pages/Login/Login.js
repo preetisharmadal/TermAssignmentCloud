@@ -20,7 +20,8 @@ function Login() {
                 isClosable: true,
             });
             localStorage.setItem('salestarUser', response.customer_id);
-            navigate("/")
+            navigate("/");
+            window.location.reload();
         }
         else {
             toast({

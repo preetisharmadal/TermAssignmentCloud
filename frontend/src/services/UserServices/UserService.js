@@ -58,3 +58,12 @@ export const SubscribeUser = async (userID) => {
         return null;
     }
 };
+
+export const isAuthenticated = () => {
+    const user = localStorage.getItem("salestarUser");
+    if (user) {
+        return true;
+    } else {
+        return false;
+    }
+}
