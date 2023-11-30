@@ -70,7 +70,12 @@ export const GetSale = async (customer_id) => {
         const response = await fetch(`${end_point}/sales?customer_id=${customer_id}`, options);
 
         const data = await response.json();
-        return data;
+        if (data.error) {
+            return [];
+        }
+        else {
+            return data;
+        }
     } catch (error) {
         console.error('Error getting sale', error);
         return null;
