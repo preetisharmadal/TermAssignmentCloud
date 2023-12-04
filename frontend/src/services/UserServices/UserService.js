@@ -1,4 +1,4 @@
-import CryptoJS from 'crypto-js';
+import { sha256, SHA256 } from "js-sha256";
 
 const end_point = process.env.REACT_APP_ENDPOINT;
 export const LoginUser = async (userID, password) => {
@@ -22,7 +22,9 @@ export const LoginUser = async (userID, password) => {
 };
 
 export const SignUpUser = async (userID, password) => {
-    const hashedValue = CryptoJS.SHA256(password).toString();
+    var hash = sha256.create();
+    hash.update(password);
+    const hashedValue = hash.hex();
     const options = {
         method: 'PUT',
         headers: {
