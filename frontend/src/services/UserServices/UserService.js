@@ -1,16 +1,12 @@
-import { sha256, SHA256 } from "js-sha256";
 
 const end_point = process.env.REACT_APP_ENDPOINT;
 export const LoginUser = async (userID, password) => {
-    var hash = sha256.create();
-    hash.update(password);
-    const hashedValue = hash.hex();
     const options = {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ customer_id: userID, password: hashedValue })
+        body: JSON.stringify({ customer_id: userID, password: password })
     }
 
     try {
@@ -25,15 +21,12 @@ export const LoginUser = async (userID, password) => {
 };
 
 export const SignUpUser = async (userID, password) => {
-    var hash = sha256.create();
-    hash.update(password);
-    const hashedValue = hash.hex();
     const options = {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ customer_id: userID, password: hashedValue })
+        body: JSON.stringify({ customer_id: userID, password: password })
     }
 
     try {
